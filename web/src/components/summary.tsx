@@ -1,15 +1,14 @@
-import { CheckCircle2, Plus } from 'lucide-react'
-import { Button } from './ui/button'
-import { DialogTrigger } from './ui/dialog'
-import { InOrbitIcon } from './in-orbit-icon'
-import { Progress, ProgressIndicator } from './ui/progress-bar'
-import { Separator } from './ui/separator'
-import { OutlineButton } from './ui/outline-button'
 import { useQuery } from '@tanstack/react-query'
-import { getSummary } from '../http/get-summary'
 import dayjs from 'dayjs'
 import ptBR from 'dayjs/locale/pt-BR'
+import { CheckCircle2, Plus } from 'lucide-react'
+import { getSummary } from '../http/get-summary'
+import { InOrbitIcon } from './in-orbit-icon'
 import { PendingGoals } from './pending-goals'
+import { Button } from './ui/button'
+import { DialogTrigger } from './ui/dialog'
+import { Progress, ProgressIndicator } from './ui/progress-bar'
+import { Separator } from './ui/separator'
 
 dayjs.locale(ptBR)
 
