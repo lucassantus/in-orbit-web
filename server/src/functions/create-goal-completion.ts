@@ -1,14 +1,15 @@
-import { and, count, eq, gte, lte } from 'drizzle-orm'
+import dayjs from 'dayjs'
+import { and, count, eq, gte, lte, sql } from 'drizzle-orm'
 import { db } from '../db'
 import { goalCompletions, goals } from '../db/schema'
-import dayjs from 'dayjs'
-import { sql } from 'drizzle-orm'
 
 interface CreateGoalCompletionRequest {
+  userId: string
   goalId: string
 }
 
 export async function createGoalCompletion({
+  userId,
   goalId,
 }: CreateGoalCompletionRequest) {
   const firstDayOfWeek = dayjs().startOf('week').toDate()
@@ -21,11 +22,13 @@ export async function createGoalCompletion({
         completionCount: count(goalCompletions.id).as('completionCount'),
       })
       .from(goalCompletions)
+      .innerJoin(goals, eq(goals.id, goalCompletions.goalId))
       .where(
         and(
           gte(goalCompletions.createdAt, firstDayOfWeek),
           lte(goalCompletions.createdAt, lastDayOfWeek),
-          eq(goalCompletions.goalId, goalId)
+          eq(goalCompletions.goalId, goalId),
+          eq(goals.userId, userId)
         )
       )
       .groupBy(goalCompletions.goalId)
@@ -41,7 +44,7 @@ export async function createGoalCompletion({
     })
     .from(goals)
     .leftJoin(goalCompletionCounts, eq(goalCompletionCounts.goalId, goals.id))
-    .where(eq(goals.id, goalId))
+    .where(and(eq(goals.id, goalId), eq(goals.userId, userId)))
     .limit(1)
 
   const { completionCount, desiredWeeklyFrequency } = result[0]
