@@ -1,17 +1,12 @@
 version: "3.7"
-name: in-orbit
+name: in-orbit-server
 
 services:
   postgres:
     image: bitnami/postgresql:13.16.0
     ports:
-      - "5433:5432"
+      - '5433:5432'
     environment:
       - POSTGRES_USER=new_user
       - POSTGRES_PASSWORD=new_password
-      - POSTGRES_DB=in_orbit
-    volumes:
-      - postgres_data:/bitnami/postgresql
-
-volumes:
-  postgres_data:
+      - POSTGRES_DB=in_orbit_db
