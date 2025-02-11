@@ -1,7 +1,9 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "biomejs.biome",
+  "biome.enabled": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit"
-  }
+    "source.organizeImports": "always",
+    "quickfix.biome": "explicit"
+  },
 }
