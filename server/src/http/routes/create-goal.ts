@@ -1,12 +1,14 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { createGoal } from '../../functions/create-goal'
+import { authenticateUserHook } from '../hooks/authenticate-user'
 
 export const createGoalRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/goals',
     {
       schema: {
+        onRequest: [authenticateUserHook],
         tags: ['goals'],
         description: 'Create a goal',
         body: z.object({
