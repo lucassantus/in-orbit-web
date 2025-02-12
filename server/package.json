@@ -5,7 +5,12 @@
   "scripts": {
     "dev": "tsx watch --env-file .env src/http/server.ts",
     "seed": "tsx --env-file .env src/db/seed.ts",
-    "biome:format": "biome format src --write"
+    "format": "biome format src --write",
+    "pretest": "npm run db:migrate:test",
+    "pretest:watch": "npm run db:migrate:test",
+    "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
+    "test": "dotenv -e .env.test -- vitest run",
+    "test:watch": "dotenv -e .env.test -- vitest"
   },
   "keywords": [],
   "author": "",
@@ -28,8 +33,10 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/node": "22.13.1",
+    "dotenv-cli": "^8.0.0",
     "drizzle-kit": "0.30.4",
     "tsx": "4.19.2",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "vitest": "^3.0.5"
   }
 }

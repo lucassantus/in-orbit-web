@@ -10,3 +10,5 @@ services:
       - POSTGRES_USER=new_user
       - POSTGRES_PASSWORD=new_password
       - POSTGRES_DB=in_orbit_db
+    volumes:
+      - ./docker:/docker-entrypoint-initdb.d
