@@ -22,6 +22,13 @@
       "when": 1739239449224,
       "tag": "0002_omniscient_ozymandias",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1739407929410,
+      "tag": "0003_quick_miracleman",
+      "breakpoints": true
     }
   ]
 }

@@ -4,13 +4,24 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch --env-file .env src/http/server.ts",
+
     "seed": "tsx --env-file .env src/db/seed.ts",
-    "format": "biome format src --write",
+
+    "test": "dotenv -e .env.test -- vitest run",
+    "test:watch": "dotenv -e .env.test -- vitest",
+
     "pretest": "npm run db:migrate:test",
     "pretest:watch": "npm run db:migrate:test",
+
     "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
-    "test": "dotenv -e .env.test -- vitest run",
-    "test:watch": "dotenv -e .env.test -- vitest"
+
+    "biome:format": "biome format --write ./src",
+    "biome:check": "biome check --write ./src",
+    "biome:lint": "biome lint --write ./src",
+
+    "shadcn": "pnpm dlx shadcn@latest add",
+
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
