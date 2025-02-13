@@ -30,5 +30,8 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - run: pnpm ci
+      - run: corepack enable
+      - run: corepack prepare pnpm@latest --activate
+
+      - run: pnpm install --frozen-lockfile
       - run: pnpm run test
