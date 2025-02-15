@@ -1,1 +1,0 @@
-CREATE DATABASE in_orbit_db_test;
