@@ -1,10 +1,11 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
 import { X } from 'lucide-react'
+import { Controller, useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { z } from 'zod'
+import { createGoal } from '../http/create-goal'
 import { Button } from './ui/button'
-import {
-  RadioGroup,
-  RadioGroupIndicator,
-  RadioGroupItem,
-} from './ui/radio-group'
 import {
   DialogClose,
   DialogContent,
@@ -13,12 +14,11 @@ import {
 } from './ui/dialog'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import { z } from 'zod'
-import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { createGoal } from '../http/create-goal'
-import { toast } from 'sonner'
-import { useQueryClient } from '@tanstack/react-query'
+import {
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
+} from './ui/radio-group'
 
 const createGoalSchema = z.object({
   title: z.string().min(1, 'Informe a atividade que deseja praticar'),

@@ -1,13 +1,13 @@
-import { CheckCircle2, Plus } from 'lucide-react'
-import { InOrbitIcon } from './in-orbit-icon'
 import { DialogTrigger } from '@radix-ui/react-dialog'
+import dayjs from 'dayjs'
+import ptBR from 'dayjs/locale/pt-BR'
+import { CheckCircle2, Plus } from 'lucide-react'
+import type { GetSummaryResponse } from '../http/get-summary'
+import { InOrbitIcon } from './in-orbit-icon'
+import { PendingGoals } from './pending-goals'
 import { Button } from './ui/button'
 import { Progress, ProgressIndicator } from './ui/progress-bar'
 import { Separator } from './ui/separator'
-import type { GetSummaryResponse } from '../http/get-summary'
-import dayjs from 'dayjs'
-import ptBR from 'dayjs/locale/pt-BR'
-import { PendingGoals } from './pending-goals'
 
 dayjs.locale(ptBR)
 
