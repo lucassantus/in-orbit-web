@@ -1,6 +1,5 @@
-import { Plus } from 'lucide-react'
-import { OutlineButton } from './ui/outline-button'
 import { useQueryClient } from '@tanstack/react-query'
+import { Plus } from 'lucide-react'
 import {
   getGetPendingGoalsQueryKey,
   getGetUserExperienceAndLevelQueryKey,
@@ -8,6 +7,7 @@ import {
   useCreateCompletion,
   useGetPendingGoals,
 } from '../http/generated/api'
+import { OutlineButton } from './ui/outline-button'
 
 export function PendingGoals() {
   const queryClient = useQueryClient()

@@ -4,7 +4,9 @@ import { Button } from '../components/ui/button'
 export function SignInWithGithub() {
   const githubUrl = new URL('/login/oauth/authorize', 'https://github.com')
 
-  githubUrl.searchParams.set('client_id', '')
+  const clientId = import.meta.env.GITHUB_CLIENT_ID
+
+  githubUrl.searchParams.set('client_id', clientId)
 
   return (
     <main className="h-screen flex flex-col items-center justify-center gap-8">

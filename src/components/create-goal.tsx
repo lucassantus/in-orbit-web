@@ -1,10 +1,15 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
 import { X } from 'lucide-react'
-import { Button } from './ui/button'
+import { Controller, useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { z } from 'zod'
 import {
-  RadioGroup,
-  RadioGroupIndicator,
-  RadioGroupItem,
-} from './ui/radio-group'
+  getGetPendingGoalsQueryKey,
+  getGetWeekSummaryQueryKey,
+  useCreateGoal,
+} from '../http/generated/api'
+import { Button } from './ui/button'
 import {
   DialogClose,
   DialogContent,
@@ -13,16 +18,11 @@ import {
 } from './ui/dialog'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import { z } from 'zod'
-import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from 'sonner'
-import { useQueryClient } from '@tanstack/react-query'
 import {
-  getGetPendingGoalsQueryKey,
-  getGetWeekSummaryQueryKey,
-  useCreateGoal,
-} from '../http/generated/api'
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
+} from './ui/radio-group'
 
 const createGoalSchema = z.object({
   title: z.string().min(1, 'Informe a atividade que deseja praticar'),
@@ -126,6 +126,7 @@ export function CreateGoal() {
                         const frequency = String(i + 1)
 
                         return (
+                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           <RadioGroupItem key={i} value={frequency}>
                             <RadioGroupIndicator />
                             <span className="text-zinc-300 text-sm font-medium leading-none">

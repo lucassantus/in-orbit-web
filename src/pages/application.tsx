@@ -1,10 +1,10 @@
 import { Dialog } from '@radix-ui/react-dialog'
+import dayjs from 'dayjs'
+import { Loader2 } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import { CreateGoal } from '../components/create-goal'
 import { WeeklySummary } from '../components/weekly-summary'
-import { Loader2 } from 'lucide-react'
 import { useGetWeekSummary } from '../http/generated/api'
-import { useSearchParams } from 'react-router-dom'
-import dayjs from 'dayjs'
 
 export function Application() {
   const [searchParams] = useSearchParams()
