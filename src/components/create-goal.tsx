@@ -1,11 +1,10 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useQueryClient } from '@tanstack/react-query'
 import { X } from 'lucide-react'
-import { Controller, useForm } from 'react-hook-form'
-import { toast } from 'sonner'
-import { z } from 'zod'
-import { createGoal } from '../http/create-goal'
 import { Button } from './ui/button'
+import {
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
+} from './ui/radio-group'
 import {
   DialogClose,
   DialogContent,
@@ -14,11 +13,16 @@ import {
 } from './ui/dialog'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
+import { z } from 'zod'
+import { Controller, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'sonner'
+import { useQueryClient } from '@tanstack/react-query'
 import {
-  RadioGroup,
-  RadioGroupIndicator,
-  RadioGroupItem,
-} from './ui/radio-group'
+  getGetPendingGoalsQueryKey,
+  getGetWeekSummaryQueryKey,
+  useCreateGoal,
+} from '../http/generated/api'
 
 const createGoalSchema = z.object({
   title: z.string().min(1, 'Informe a atividade que deseja praticar'),
@@ -40,20 +44,24 @@ export function CreateGoal() {
     resolver: zodResolver(createGoalSchema),
   })
 
+  const { mutateAsync: createGoal } = useCreateGoal()
+
   async function handleCreateGoal({
     title,
     desiredWeeklyFrequency,
   }: CreateGoalSchema) {
     try {
       await createGoal({
-        title,
-        desiredWeeklyFrequency,
+        data: {
+          title,
+          desiredWeeklyFrequency,
+        },
       })
 
       reset()
 
-      queryClient.invalidateQueries({ queryKey: ['pending-goals'] })
-      queryClient.invalidateQueries({ queryKey: ['summary'] })
+      queryClient.invalidateQueries({ queryKey: getGetPendingGoalsQueryKey() })
+      queryClient.invalidateQueries({ queryKey: getGetWeekSummaryQueryKey() })
 
       toast.success('Meta criada com sucesso!')
     } catch {

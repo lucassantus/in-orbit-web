@@ -1,5 +1,5 @@
-import { DialogTrigger } from '@radix-ui/react-dialog'
 import { Plus } from 'lucide-react'
+import { DialogTrigger } from '@radix-ui/react-dialog'
 
 import logo from '../assets/in-orbit-logo.svg'
 import rocketLaunchIllustration from '../assets/rocket-launch-illustration.svg'

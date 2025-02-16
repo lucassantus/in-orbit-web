@@ -1,4 +1,4 @@
-import { type ComponentProps, forwardRef } from 'react'
+import { forwardRef, type ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type InputProps = ComponentProps<'input'>
