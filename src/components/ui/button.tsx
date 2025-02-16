@@ -3,7 +3,7 @@ import { type ComponentProps, forwardRef } from 'react'
 import { type VariantProps, tv } from 'tailwind-variants'
 
 const button = tv({
-  base: 'flex items-center justify-center gap-2 rounded-lg text-sm font-medium tracking-tight outline-none ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-black focus-visible:ring-2',
+  base: 'flex items-center justify-center gap-2 rounded-lg text-sm font-medium tracking-tight outline-hidden ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-black focus-visible:ring-2',
 
   variants: {
     variant: {
